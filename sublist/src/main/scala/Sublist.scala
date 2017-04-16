@@ -12,7 +12,6 @@ class Sublist {
 }
 
 
-
 object Sublist {
   sealed abstract class SublistType
   case object Equal extends SublistType
