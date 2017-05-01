@@ -22,11 +22,17 @@ object CustomSet {
   }
 
 
-def toList[A](s: CustomSet[A]): List[A] = {
-  foldLeft(s, List[A]())((acc, ele) => ele :: acc)
-}
+  def toList[A](s: CustomSet[A]): List[A] = {
+    foldLeft(s, List[A]())((acc, ele) => ele :: acc)
+  }
 
+  def empty[A](s: CustomSet[A]): Boolean = s == Nil
 
-
+  @tailrec
+  def member[A](s: CustomSet[A], m: A): Boolean =
+    s match {
+      case Nil => false
+      case Cons(elem, rest) => if (elem == m) true else member(rest, m)
+    }
 
 }
