@@ -21,7 +21,6 @@ object CustomSet {
     accumumulation.foldLeft(Nil: CustomSet[A])((acc, e) => Cons(e, acc))
   }
 
-
   def toList[A](s: CustomSet[A]): List[A] = {
     foldLeft(s, List[A]())((acc, ele) => ele :: acc)
   }
@@ -35,4 +34,17 @@ object CustomSet {
       case Cons(elem, rest) => if (elem == m) true else member(rest, m)
     }
 
+  def insert[A](s: CustomSet[A], itemOfInterest: A): CustomSet[A] = {
+    if (member(s, itemOfInterest)) s else Cons(itemOfInterest, s)
+  }
+
+  def union[A](sA: CustomSet[A], sB: CustomSet[A]): CustomSet[A] = {
+    foldLeft(sA, sB)((acc, current) => insert(acc, current))
+  }
+
+  def difference[A](s1: CustomSet[A], s2: CustomSet[A]): CustomSet[A] = {
+    foldLeft(s1, Nil: CustomSet[A])((acc, a) => {
+      if (member(s2, a)) acc else Cons(a, acc)
+    })
+  }
 }
