@@ -47,4 +47,11 @@ object CustomSet {
       if (member(s2, a)) acc else Cons(a, acc)
     })
   }
+
+  @tailrec
+  def isSubsetOf[A](setA: CustomSet[A], setB: CustomSet[A]): Boolean = setA match {
+    case Nil => true
+    case (current, rest) => member(setB , current) && isSubsetOf(rest, setB)
+  }
+  
 }
