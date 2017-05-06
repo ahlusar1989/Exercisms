@@ -51,7 +51,17 @@ object CustomSet {
   @tailrec
   def isSubsetOf[A](setA: CustomSet[A], setB: CustomSet[A]): Boolean = setA match {
     case Nil => true
-    case (current, rest) => member(setB , current) && isSubsetOf(rest, setB)
+    case Cons(current, rest) => member(setB , current) && isSubsetOf(rest, setB)
   }
-  
+
+  @tailrec
+  def isDisjointFrom[A](firstSet: CustomSet[A], secondSet: CustomSet[A]): Boolean =
+    firstSet match {
+      case Nil => true
+      case Cons(mem, tail) => !member(secondSet, mem) && isDisjointFrom(tail, secondSet)
+  }
+
+  def isEqual[A](setA: CustomSet[A], setB: CustomSet[A]): Boolean =
+    empty(difference(setA, setB)) && empty(difference(setB, setA))
+
 }
