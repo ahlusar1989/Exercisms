@@ -64,4 +64,8 @@ object CustomSet {
   def isEqual[A](setA: CustomSet[A], setB: CustomSet[A]): Boolean =
     empty(difference(setA, setB)) && empty(difference(setB, setA))
 
+  def intersection[A](set1: CustomSet[A], set2: CustomSet[A]): CustomSet[A] = {
+    foldLeft(set1, Nil: CustomSet[A])((accmulation, a) => if (member(set2, a)) Cons(a, accmulation) else accmulation)
+  }
+
 }
