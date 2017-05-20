@@ -35,13 +35,22 @@ object Zipper {
     case _ => throw new Exception("up: called on topmost focus")
   }
   // Set the value of the focus node.
-  def setValue[A](v: A, zipper: Zipper[A]): Zipper[A] = ???
+  def setValue[A](v: A, zipper: Zipper[A]): Zipper[A] = {
+    val (binaryTree, breadCrumbs) = zipper
+    (binaryTree.copy(value = v), breadCrumbs)
+  }
 
   // Replace a left child tree.
-  def setLeft[A](l: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = ???
+  def setLeft[A](l: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = {
+    val (binaryTree, breadCrumbs) = zipper
+    (binaryTree.copy(left = l), breadCrumbs)
+  }
 
   // Replace a right child tree.
-  def setRight[A](r: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = ???
+  def setRight[A](r: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = {
+    val (binaryTree, breadCrumbs) = zipper
+    (binaryTree.copy(right = r), breadCrumbs)
+  }
 }
 
 
