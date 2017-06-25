@@ -1,5 +1,12 @@
 object Zipper {
 
+  // A binary tree.
+  case class BinTree[A](value: A, left: Option[BinTree[A]], right: Option[BinTree[A]])
+
+  trait Crumb[A]
+  case class LeftCrumb[A](value: A, tree: Option[BinTree[A]]) extends Crumb[A]
+  case class RightCrumb[A](value: A, tree: Option[BinTree[A]]) extends Crumb[A]
+
   type Breadcrumbs[A] = List[Crumb[A]]
 
   type Zipper[A] = (BinTree[A], Breadcrumbs[A])
@@ -32,7 +39,7 @@ object Zipper {
   def up[A](zipper: Zipper[A]): Option[Zipper[A]] = zipper match {
     case (t, LeftCrumb(x, r) :: bs) => Some((BinTree(x, Some(t), r), bs))
     case (t, RightCrumb(x, l) :: bs) => Some((BinTree(x, l, Some(t)), bs))
-    case _ => throw new Exception("up: called on topmost focus")
+    case _ => throw new Exception("Current focus is the top!")
   }
   // Set the value of the focus node.
   def setValue[A](v: A, zipper: Zipper[A]): Zipper[A] = {
@@ -52,11 +59,3 @@ object Zipper {
     (binaryTree.copy(right = r), breadCrumbs)
   }
 }
-
-
-// A binary tree.
-case class BinTree[A](value: A, left: Option[BinTree[A]], right: Option[BinTree[A]])
-
-trait Crumb[A]
-case class LeftCrumb[A](value: A, tree: Option[BinTree[A]]) extends Crumb[A]
-case class RightCrumb[A](value: A, tree: Option[BinTree[A]]) extends Crumb[A]
