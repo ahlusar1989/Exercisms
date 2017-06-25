@@ -1,2 +1,2 @@
 # Exercisms
-Small finger exercises for Scala and Rust
+Small finger exercises to keep up to date with Scala, Java and Rust
