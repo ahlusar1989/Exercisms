@@ -5,19 +5,12 @@ import (
 	"sort"
 )
 
+//TestVersion is the unit test version this will pass
+const TestVersion = 2
+
+//Record is a database item that specifies a parent record in a tree structure.
 type Record struct {
 	ID, Parent int
-}
-
-type Node struct {
-	ID       int
-	Children []*Node
-}
-
-type Mismatch struct{}
-
-func (m Mismatch) Error() string {
-	return "c"
 }
 
 //String converts a record to a string.
@@ -31,6 +24,12 @@ type byID []Record
 func (ids byID) Len() int           { return len(ids) }
 func (ids byID) Swap(i, j int)      { ids[i], ids[j] = ids[j], ids[i] }
 func (ids byID) Less(i, j int) bool { return ids[i].ID < ids[j].ID }
+
+//Node is a node in a tree structure.
+type Node struct {
+	ID       int
+	Children []*Node
+}
 
 /*Build converts a set of records to a tree of Nodes.*/
 func Build(records []Record) (*Node, error) {
