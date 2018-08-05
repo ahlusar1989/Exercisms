@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/simple-linked-list.iml" filepath="$PROJECT_DIR$/simple-linked-list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simple-linked-list_main.iml" filepath="$PROJECT_DIR$/.idea/modules/simple-linked-list_main.iml" group="simple-linked-list" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simple-linked-list_test.iml" filepath="$PROJECT_DIR$/.idea/modules/simple-linked-list_test.iml" group="simple-linked-list" />
+    </modules>
+  </component>
+</project>
